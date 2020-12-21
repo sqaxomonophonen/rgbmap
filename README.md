@@ -4,6 +4,7 @@ correct this image, say in GIMP, and then apply the transform to a batch of
 images.
 
 Problems:
+ - Seems to be some bugs in the color mapping (smooth gradients are broken)
  - Doesn't copy metadata (could possibly be handled using `exiftool -TagsFromFile`)
  - Doesn't copy file date
  - Single-threaded / not parallelized
