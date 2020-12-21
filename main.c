@@ -250,7 +250,7 @@ static inline void map_pixel(uint8_t* pixel)
 		bfr = 1.0f;
 	}
 
-	int cc[2*2*2*N_CHANNELS];
+	int cc[2*2*2*N_CHANNELS]; // color cube
 	int* ccp = cc;
 	for (int db = 0; db < 2; db++) {
 		for (int dg = 0; dg < 2; dg++) {
@@ -334,6 +334,8 @@ static int visit(const char* src_path, const struct stat* st, const int typeflag
 		ret = stbi_write_jpg(dst_path, width, height, n_channels, im, 95);
 	} else if (is_png) {
 		ret = stbi_write_png(dst_path, width, height, n_channels, im, width*n_channels);
+	} else {
+		assert(!"UNREACHABLE");
 	}
 	if (ret == 0) {
 		printf("%s: write failed\n", dst_path);
@@ -426,7 +428,7 @@ int main(int argc, char** argv)
 
 			for (int y = 0; y < PALETTE_HEIGHT; y++) {
 				for (int x = 0; x < PALETTE_WIDTH; x++) {
-					uint8_t* pixel = &refim[x*n_channels + y*width*n_channels];
+					uint8_t* pixel = &refim[n_channels * (x + y*width)];
 					int luti = palette_xy_to_lut_index(x, y);
 					uint8_t* lutp = &lut[luti];
 					for (int i = 0; i < 3; i++) lutp[i] = pixel[i];
