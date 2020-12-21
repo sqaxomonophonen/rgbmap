@@ -17,3 +17,6 @@ rgbmap: main.o stbim.o
 
 clean:
 	rm -f rgbmap *.o
+
+install:
+	install rgbmap /usr/local/bin/rgbmap
