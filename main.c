@@ -232,8 +232,8 @@ static inline void map_pixel(uint8_t* pixel)
 	int bi = (int)bff;
 
 	float rfr = rf - rff;
-	float gfr = bf - bff;
-	float bfr = gf - gff;
+	float gfr = gf - gff;
+	float bfr = bf - bff;
 
 	if (ri >= (PALETTE_DEPTH-1)) {
 		ri--;
